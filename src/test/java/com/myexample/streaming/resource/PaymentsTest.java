@@ -1,5 +1,6 @@
 package com.myexample.streaming.resource;
 
+import static com.myexample.streaming.utils.TestUtils.payment;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -49,13 +50,6 @@ class PaymentsTest {
 		
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
 		verify(service, times(1)).createPayment(any(Payment.class));
-	}
-	
-	private Payment payment(String cardNumber) {
-		Payment payment = new Payment();
-		payment.setCardNumber(cardNumber);
-		payment.setAmount("100");
-		return payment;
 	}
 	
 }
