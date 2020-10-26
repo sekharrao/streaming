@@ -12,6 +12,8 @@ public class TestUtils {
 		Account account = new Account();
 		account.setUsername("abc");
 		account.setCardNumber("5105105105105100");
+		account.setDob("2000-10-20");
+		
 		return Collections.singletonList(account);
 	}
 	
