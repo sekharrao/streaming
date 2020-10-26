@@ -1,0 +1,3153 @@
+{
+	"info": {
+		"_postman_id": "64fb18da-ae1c-494b-bb9a-cc8189b539ae",
+		"name": "streaming api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration",
+			"item": [
+				{
+					"name": "registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3a2f81a8-e3fb-4a19-8243-4c7504064b40",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						},
+						"description": "registration of account"
+					},
+					"response": []
+				},
+				{
+					"name": "get all registration",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5c24b5c-6687-431b-84d5-81e363e3eedd",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registration - duplicate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04d39f68-8fa1-4f7c-972e-5a519b88da1a",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(409);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "registration - under age check",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d256831e-36a6-456d-b3b9-1d0c6127d1a7",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:37:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:36:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "registration - username validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "98b7b5e8-9c8e-4077-a096-db5f4fbe8949",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abd \",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - username validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd \",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:38:04.462+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:36:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:37:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "registration - password validation 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c74dbf4-6418-47d8-8066-6a83a893706c",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:36:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:37:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - username validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd \",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:38:04.462+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - password validation 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:00.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "registration - password validation 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee57d00e-520f-433f-8411-cc180b089094",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abcaaaaa\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - password validation 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:00.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - username validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd \",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:38:04.462+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:37:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:36:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - password validation 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abcaaaaa\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:52.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "registration - password validation 3 - eight chars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "39250517-823a-4096-9bdb-e98649497a6c",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - password validation 3 - eight chars",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:40:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:40:37.886+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - username validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd \",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:38:04.462+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:36:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - password validation 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abcaaaaa\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:52.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:37:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - password validation 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:00.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						}
+					]
+				},
+				{
+					"name": "registration - email validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1d450917-5316-470a-b25e-ae123d9d29d8",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc12345\",\n\t\"email\":\"abc.test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - username validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd \",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:38:04.462+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - password validation 3 - eight chars",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:40:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:40:37.886+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - email validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc12345\",\n\t\"email\":\"abc.test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:41:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:41:53.628+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - password validation 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abcaaaaa\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:52.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:37:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - password validation 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:00.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:36:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "registration - card validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a1eae35a-08e6-4f86-ae61-2249405c4b70",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc12345\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"1111111111111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/registration/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "registration - password validation 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:00.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:37:04 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - username validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd \",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:38:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:38:04.462+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:35:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - password validation 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abcaaaaa\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:39:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:39:52.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - under age check",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abc\",\n\t\"password\" : \"Abc1234567\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:36:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "registration - email validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc12345\",\n\t\"email\":\"abc.test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:41:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:41:53.628+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - password validation 3 - eight chars",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc1234\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2020-10-24\",\n\t\"cardNumber\":\"5105105105105100\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:40:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:40:37.886+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						},
+						{
+							"name": "registration - card validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\" : \"abd\",\n\t\"password\" : \"Abc12345\",\n\t\"email\":\"abc@test.com\",\n\t\"dob\":\"2000-10-24\",\n\t\"cardNumber\":\"1111111111111111111\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/registration/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"registration",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:43:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:43:05.728+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/registration/\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Registration Endpoint",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Payments",
+			"item": [
+				{
+					"name": "payments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bec26918-a81e-4cdd-a6c7-2c03a63ecd4c",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cardNumber\": \"5105105105105100\",\n\t\"amount\": \"101\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/payments/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payments",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "payments - account not exist  validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2f489b52-7da3-4261-86bf-c0f24f26d174",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cardNumber\": \"4111111111111111\",\n\t\"amount\": \"101\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/payments/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payments",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "payments - account not exist  validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cardNumber\": \"4111111111111111\",\n\t\"amount\": \"101\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/payments/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:47:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "payments - card validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a66eb43d-0c09-41f8-b685-2f3a40fd8fea",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cardNumber\": \"1111111111111111\",\n\t\"amount\": \"101\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/payments/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payments",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "payments - card validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cardNumber\": \"1111111111111111\",\n\t\"amount\": \"101\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/payments/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:48:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:48:29.383+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/payments/\"\n}"
+						},
+						{
+							"name": "payments - account not exist  validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cardNumber\": \"4111111111111111\",\n\t\"amount\": \"101\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/payments/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:47:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "payments - amount validation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b52266ca-56e8-4f20-aab5-8ba7aae9f34c",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cardNumber\": \"1111111111111111\",\n\t\"amount\": \"5001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/payments/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payments",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "payments - card validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cardNumber\": \"1111111111111111\",\n\t\"amount\": \"101\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/payments/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:48:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:48:29.383+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/payments/\"\n}"
+						},
+						{
+							"name": "payments - amount validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cardNumber\": \"1111111111111111\",\n\t\"amount\": \"5001\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/payments/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:49:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": \"2020-10-26T19:49:01.988+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"\",\n    \"path\": \"/payments/\"\n}"
+						},
+						{
+							"name": "payments - account not exist  validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cardNumber\": \"4111111111111111\",\n\t\"amount\": \"101\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/payments/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:47:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "get all payments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "37558df1-a318-4391-b1bf-b026da15ea16",
+								"exec": [
+									"pm.test(\"Status test\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response body\", function () {",
+									"     pm.response.to.be.withBody;",
+									"     pm.response.to.be.json;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/payments/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"payments",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all payments",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/payments/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"payments",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 26 Oct 2020 19:49:59 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"cardNumber\": \"5105105105105100\",\n        \"amount\": \"101\"\n    }\n]"
+						}
+					]
+				}
+			],
+			"description": "Payments Endpoint",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,495 @@
+{
+	"id": "387af8c0-85fe-4a23-a37e-43cce216de2e",
+	"name": "streaming api",
+	"timestamp": "2020-10-26T20:16:41.133Z",
+	"collection_id": "64fb18da-ae1c-494b-bb9a-cc8189b539ae",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 17,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "5f65363e-444b-4a98-bb25-0db282e4644c",
+			"name": "registration",
+			"url": "http://localhost:8080/registration/",
+			"time": 174,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				174
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "5928ad68-8a8b-4809-8946-6288218d62d3",
+			"name": "get all registration",
+			"url": "http://localhost:8080/registration/",
+			"time": 156,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Response body": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				156
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Response body": true
+				}
+			]
+		},
+		{
+			"id": "2c6a012a-940c-4c2b-b6a4-0b8d9933b44e",
+			"name": "registration - duplicate",
+			"url": "http://localhost:8080/registration/",
+			"time": 5,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "aadfa75c-23a9-4e0f-a941-d5315f3c7b83",
+			"name": "registration - under age check",
+			"url": "http://localhost:8080/registration/",
+			"time": 4,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2684dd14-8a9f-4d83-8a12-0cdde16a5f52",
+			"name": "registration - username validation",
+			"url": "http://localhost:8080/registration/",
+			"time": 28,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "ae1fb053-8ba9-41ac-93d2-f4fd224a3b9a",
+			"name": "registration - password validation 1",
+			"url": "http://localhost:8080/registration/",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "89cc8a53-c12c-42f4-ab6a-4bf5c909ba11",
+			"name": "registration - password validation 2",
+			"url": "http://localhost:8080/registration/",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "4303bc4a-eb5c-4759-bb2e-49d82b1f4453",
+			"name": "registration - password validation 3 - eight chars",
+			"url": "http://localhost:8080/registration/",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "de2cd370-810b-48c6-8564-e236fa2d3037",
+			"name": "registration - email validation",
+			"url": "http://localhost:8080/registration/",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "d13e8f31-8e7f-4b5a-a458-d8b2f28afabc",
+			"name": "registration - card validation",
+			"url": "http://localhost:8080/registration/",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "1b9bcacc-f5cd-4e5d-a770-2c85a071e11a",
+			"name": "payments",
+			"url": "http://localhost:8080/payments/",
+			"time": 34,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				34
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "a40d73a5-7489-42b2-a886-122653dd2322",
+			"name": "payments - account not exist  validation",
+			"url": "http://localhost:8080/payments/",
+			"time": 6,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "1e4f74bb-c403-41ec-8252-9e4db27389de",
+			"name": "payments - card validation",
+			"url": "http://localhost:8080/payments/",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "dd2c87ec-ad5a-421a-83ec-a5d280c6cb60",
+			"name": "payments - amount validation",
+			"url": "http://localhost:8080/payments/",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "5004fedf-084b-49b9-adcd-52cbcc8e0287",
+			"name": "get all payments",
+			"url": "http://localhost:8080/payments/",
+			"time": 9,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"Response body": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response body": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"Response body": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 457,
+	"collection": {
+		"requests": [
+			{
+				"id": "5f65363e-444b-4a98-bb25-0db282e4644c",
+				"method": "POST"
+			},
+			{
+				"id": "5928ad68-8a8b-4809-8946-6288218d62d3",
+				"method": "GET"
+			},
+			{
+				"id": "2c6a012a-940c-4c2b-b6a4-0b8d9933b44e",
+				"method": "POST"
+			},
+			{
+				"id": "aadfa75c-23a9-4e0f-a941-d5315f3c7b83",
+				"method": "POST"
+			},
+			{
+				"id": "2684dd14-8a9f-4d83-8a12-0cdde16a5f52",
+				"method": "POST"
+			},
+			{
+				"id": "ae1fb053-8ba9-41ac-93d2-f4fd224a3b9a",
+				"method": "POST"
+			},
+			{
+				"id": "89cc8a53-c12c-42f4-ab6a-4bf5c909ba11",
+				"method": "POST"
+			},
+			{
+				"id": "4303bc4a-eb5c-4759-bb2e-49d82b1f4453",
+				"method": "POST"
+			},
+			{
+				"id": "de2cd370-810b-48c6-8564-e236fa2d3037",
+				"method": "POST"
+			},
+			{
+				"id": "d13e8f31-8e7f-4b5a-a458-d8b2f28afabc",
+				"method": "POST"
+			},
+			{
+				"id": "1b9bcacc-f5cd-4e5d-a770-2c85a071e11a",
+				"method": "POST"
+			},
+			{
+				"id": "a40d73a5-7489-42b2-a886-122653dd2322",
+				"method": "POST"
+			},
+			{
+				"id": "1e4f74bb-c403-41ec-8252-9e4db27389de",
+				"method": "POST"
+			},
+			{
+				"id": "dd2c87ec-ad5a-421a-83ec-a5d280c6cb60",
+				"method": "POST"
+			},
+			{
+				"id": "5004fedf-084b-49b9-adcd-52cbcc8e0287",
+				"method": "GET"
+			}
+		]
+	}
+}
